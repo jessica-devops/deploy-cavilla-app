@@ -4,7 +4,7 @@ pipeline{
         string(Name:'desire' , DefaultValue:'1.0.0')
     }
     stages{
-        stage(build){
+        stage(build1){
             step{
                 script // This step should not normally be used in your script. Consult the inline help for details.
                     withDockerRegistry(credentialsId: 'ecr:us-east-1:clin-id', url: 'https://ec2-54-167-92-40.compute-1.amazonaws.com/') {
