@@ -1,21 +1,22 @@
 pipeline{
     agent any
     parameters{
-        string(name:'desire' , defaultValue:'1.0.0')
-    }
+        string (name: 'desire' , defaultValue: '1.0.0' )
+        }
     stages{
-        stage("build"){
+        stage("Build image"){
             steps{
                 script{ 
                     // This step should not normally be used in your script. Consult the inline help for details.
-                    withDockerRegistry(credentialsId: 'ecr:us-east-1:clin-id', url: 'https://ec2-54-167-92-40.compute-1.amazonaws.com/') {
-                sh "docker build -t cavilla-ecr:${params.desire} ."   
-                sh "docker tag cavilla-ecr:${params.desire}727732356710.dkr.ecr.us-east-1.amazonaws.com/cavilla-ecr:${params.desire}"
-                sh "docker tag cavilla-ecr:${Params.desire} 727732356710.dkr.ecr.us-east-1.amazonaws.com/cavilla-ecr:latest" 
-                sh "docker push 727732356710.dkr.ecr.us-east-1.amazonaws.com/cavilla-ecr:latest"
+                     withDockerRegistry(credentialsId: 'ecr:us-east-1:clin-id', url: 'https://ec2-54-167-92-40.compute-1.amazonaws.com/'){
+                    sh "docker build -t cavilla-ecr:${params.desire} ."
+                    sh "docker tag cavilla-ecr:${params.desire} 727732356710.dkr.ecr.us-east-1.amazonaws.com/cavilla-ecr:${params.desire}"
+                    sh "docker tag cavilla-ecr:${params.desire} 727732356710.dkr.ecr.us-east-1.amazonaws.com/cavilla-ecr:latest"
+                    sh "docker push 727732356710.dkr.ecr.us-east-1.amazonaws.com/cavilla-ecr:latest"
                 }
-              }
             }
         }
+            
+            }
     }
 }
