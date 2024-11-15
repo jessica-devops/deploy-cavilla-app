@@ -11,8 +11,8 @@ pipeline{
                         withDockerRegistry(credentialsId: 'ecr:us-east-1:clin-id', url: 'https://727732356710.dkr.ecr.us-east-1.amazonaws.com/') {
                     sh "docker build -t cavilla-ecr:${params.desire} ."
                     sh "docker tag cavilla-ecr:${params.desire} 727732356710.dkr.ecr.us-east-1.amazonaws.com/cavilla-ecr:${params.desire}"
-                    sh "docker tag cavilla-ecr:${params.desire} 727732356710.dkr.ecr.us-east-1.amazonaws.com/cavilla-ecr:latest"
-                    sh "docker push 727732356710.dkr.ecr.us-east-1.amazonaws.com/cavilla-ecr:latest"
+                    sh "docker tag cavilla-ecr:${params.desire} 727732356710.dkr.ecr.us-east-1.amazonaws.com/cavilla-ecr"
+                    sh "docker push 727732356710.dkr.ecr.us-east-1.amazonaws.com/cavilla-ecr"
                 }
             }
         }
